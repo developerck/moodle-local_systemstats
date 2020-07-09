@@ -1,12 +1,26 @@
+
+
 # systemstats #
+This is a moodle local plugin . It will work for moodle  version > 3.5, however, you can try with modole above than 2.7
 
-Display the system stats on a page tha can be filtered on basis of Category
+**Problem Statement**
+In moodle most of the reports are available either at system level or course level .
 
-Helpful for collective report of enrolment 
+**Solution**
+* This plugin comes with a capability that can be assigned at category level.
+* person who has the capability at respective category, can view the stats for all the courses under that category and sub category on a single page. 
+* Admin can view for all  reports
+* All report links are mentioned under Site Administration for admin 
+
+
+**Report Images : -**
+[https://github.com/developerck/developerck.github.io/tree/master/repo/systemstats/images](https://github.com/developerck/developerck.github.io/tree/master/repo/systemstats/images)
 
 ## License ##
 
-2020 Chandra Kishor <developerck@gmail.com>
+2020 
+Chandra Kishor
+
 https://developerck.com
 
 This program is free software: you can redistribute it and/or modify it under
@@ -20,3 +34,4 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <http://www.gnu.org/licenses/>.
+
