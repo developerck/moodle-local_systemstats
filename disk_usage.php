@@ -122,14 +122,14 @@ if (!$categoryid && is_siteadmin()) {
     echo "</br>";
     echo "<h3>";
     echo get_string('disk_usage_total', 'local_systemstats');
-    echo '<span class="badge badge-info">' . $storage->format_size($storage->total_system_usage(), 'gb') . ' GB</span>';
+    echo '<span class="badge badge-info">' . $storage->format_size($storage->total_system_usage()) . '</span>';
     echo "</h3>";
 
-    $ac = $storage->format_size($storage->all_course_usage());
-    $au = $storage->format_size($storage->all_user_usage());
+    $ac = $storage->format_size_custom($storage->all_course_usage());
+    $au = $storage->format_size_custom($storage->all_user_usage());
     $ds = array(array("Type", "Storage"),
-        array("All Course", array("v" => (int) $ac, "f" => $ac . " MB")),
-        array("All Users", array("v" => (int) $au, "f" => $au . " MB")),
+        array("All Course", array("v" => (float) $ac, "f" => $ac." MB")),
+        array("All Users", array("v" => (float) $au, "f" => $au." MB")),
             )
     ?>
     <div id="piechart" style="width: 900px; height: 500px;"></div>
@@ -164,9 +164,9 @@ if (!$categoryid && is_siteadmin()) {
     echo "<h3>";
     echo get_string('disk_usage_total', 'local_systemstats');
     if ($course) {
-        echo '<span class="badge badge-info">' . $storage->format_size($storage->course_usage($courseid)) . ' MB</span>';
+        echo '<span class="badge badge-info">' . $storage->format_size($storage->course_usage($courseid)) . '</span>';
     } else {
-        echo '<span class="badge badge-info">' . $storage->format_size($storage->cat_usage($categoryid)) . ' MB</span>';
+        echo '<span class="badge badge-info">' . $storage->format_size($storage->cat_usage($categoryid)) . '</span>';
     }
     echo "</h3>";
 }
@@ -184,7 +184,7 @@ if ($course) {
             $url = moodle_url::make_pluginfile_url(
                             $c->contextid, $c->component, $c->filearea, $c->itemid, $c->filepath, $c->filename);
             $row[] = html_writer::link($url, $c->filename, array("target" => "_blank"));
-            $row[] = $storage->format_size($c->filesize) . " MB";
+            $row[] = $storage->format_size($c->filesize) . "";
             $row[] = $c->type;
             $row[] = $c->component;
             $row[] = $c->filearea;
@@ -210,7 +210,7 @@ if ($course) {
         foreach ($data['records'] as $c) {
             $url = new moodle_url("/local/systemstats/disk_usage.php", array("categoryid" => $categoryid, "courseid" => $c->courseid));
             $link = html_writer::link($url, $c->coursename);
-            $table->data[] = array($link, $storage->format_size($c->coursesize) . " MB");
+            $table->data[] = array($link, $storage->format_size($c->coursesize) . "");
         }
         echo html_writer::table($table);
         $paginationurl = new moodle_url("/local/systemstats/disk_usage.php", array("categoryid" => $categoryid, 'page' => $page, 'perpage' => $perpage));
